@@ -2,10 +2,12 @@ const express = require('express'),
   server = express()
 const bodyParser = require('body-parser')
 const router = require('./routes')
+const Models = require('./models')
+const { port } = require('./config')
 
-const PORT = 3001
+const models = new Models()
 
-server.set('port', PORT)
+server.set('port', port)
 server.set('json spaces', 2)
 
 server.use(bodyParser.json())
