@@ -1,6 +1,7 @@
 const express = require('express'),
   server = express()
 const bodyParser = require('body-parser')
+const auth = require('./auth')
 const router = require('./routes')
 const Db = require('./db')
 const { port } = require('./config')
@@ -9,6 +10,8 @@ server.set('port', port)
 server.set('json spaces', 2)
 
 server.use(bodyParser.json())
+// server.use(auth)
+server.use(auth.initialise())
 server.use(router)
 
 Db.orm.sync({ force: true })

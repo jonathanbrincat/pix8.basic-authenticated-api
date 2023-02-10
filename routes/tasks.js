@@ -1,11 +1,15 @@
 const router = require('express').Router()
+const auth = require('../auth')
 const { tasks } = require('../models')
 
 router
-  .all((request, response, next) => {
-    delete request.body?.id
-    next()
-  })
+  .all('/',
+    auth.authenticate,
+    (request, response, next) => {
+      delete request.body?.id
+      next()
+    }
+  )
   .get('/', (request, response) => {
     tasks.findAll({ where: { user_id: request.user.id } })
       .then(data => response.status(200).json(data))
