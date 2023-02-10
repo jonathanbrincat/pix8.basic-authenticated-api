@@ -1,7 +1,7 @@
 const jwt = require('jwt-simple')
 const router = require('express').Router()
 const { users } = require('../models')
-const { auth } = require('../libs/config')
+const { auth } = require('../config')
 
 router
   .post('/auth', (request, response) => {
