@@ -11,5 +11,9 @@ module.exports = {
       },
     },
   },
+  auth: {
+    secret: 't4$k-AP1',
+    session: { session: false }
+  },
   port: 3001,
 }
