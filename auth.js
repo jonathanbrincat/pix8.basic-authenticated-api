@@ -1,6 +1,6 @@
 const passport = require('passport')
 const { Strategy, ExtractJwt } = require('passport-jwt')
-const { users } = require('./models')
+const { Users } = require('./models')
 const { auth: config } = require('./config')
 
 var instance;
@@ -13,7 +13,7 @@ const params = {
 class Auth {
   constructor() {
     const strategy = new Strategy(params, (payload, done) => {
-      users.findById(payload.id)
+      Users.findById(payload.id)
         .then(user => {
           if (user) {
             return done(null, {

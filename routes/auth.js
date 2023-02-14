@@ -1,17 +1,18 @@
 const jwt = require('jwt-simple')
 const router = require('express').Router()
-const { users } = require('../models')
+const { Users } = require('../models')
 const { auth } = require('../config')
 
 router
-  .post('/auth', (request, response) => {
+  // .post('/auth', (request, response) => {
+  .post('/token', (request, response) => {
 
     if(request.body.email && request.body.password) {
       const { email, password } = request.body
 
-      users.findOne({ where: { email: email } })
+      Users.findOne({ where: { email: email } })
         .then(user => {
-          if (users.isPassword(user.password, password)) {
+          if (Users.isPassword(user.password, password)) {
             const payload = { id: user.id }
 
             response.json({
