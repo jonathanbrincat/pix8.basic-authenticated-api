@@ -12,8 +12,8 @@ const { Tasks } = require('../models')
 //   })
 
 router
-  // .all('/',
-  // .all('/*',
+// router.route('/')
+  // .all('/:id?(\\d+)',
   .all('/:id?',
     auth.authenticate(), // JB: can't do this. have to execute. thought it was a callback. need to check docs.
     (request, response, next) => {
@@ -38,6 +38,7 @@ router
   })
 
 // JB: alternative
+// router.route('/:id(\\d+)')
 // router
   // .all('/:id',
   //   // auth.authenticate,

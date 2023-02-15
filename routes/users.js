@@ -25,4 +25,15 @@ router.route('/')
       .catch(error => response.status(412).json({ msg: error.message }))
   })
 
+// router
+//   .post('/logout', auth.authenticate(), (response, request, next) => {
+//     request.logout((error) => {
+//       if(error) {
+//         return next(error)
+//       }
+
+//       response.redirect('/')
+//     })
+//   })
+
 module.exports = router

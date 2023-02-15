@@ -13,6 +13,7 @@ server.set('json spaces', 2)
 server.use(cors(config))
 server.use(bodyParser.json())
 server.use(auth.initialise())
+// server.use(auth.session())
 server.use(router)
 
 Db.orm.sync({ force: true })

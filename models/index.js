@@ -18,7 +18,7 @@ class Models extends Db {
       .filter(file => file.isFile() && path.extname(file.name.toLowerCase()) === '.js' && file.name.toLowerCase() !== 'index.js')
       .forEach(file => {
 
-        // TODO: replace import. deprecated in v6
+        // TODO: replace import. deprecated post v5
         const model = Db.orm.import(
           path.join(__dirname, file.name)
         )
@@ -27,7 +27,7 @@ class Models extends Db {
       })
 
     Object.values(models).forEach((model) => {
-      model.associate(models)
+      model.associate(models) // JB: 'associate' is a custom class method extended upon the sequelize model
     })
 
     instance = this
