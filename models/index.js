@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Db = require('../db')
+const { DataTypes } = require('sequelize')
 
 var instance
 var models = {}
@@ -19,9 +20,13 @@ class Models extends Db {
       .forEach(file => {
 
         // TODO: replace import. deprecated post v5
-        const model = Db.orm.import(
+        // const model = Db.orm.import(
+        //   path.join(__dirname, file.name)
+        // )
+        const model = require(
           path.join(__dirname, file.name)
-        )
+        )(Db.orm, DataTypes)
+
         models[model.name] = model
         // this[model.name] = model // JB: alternative without opting to return models object
       })
