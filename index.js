@@ -12,7 +12,6 @@ server.set('json spaces', 2)
 
 server.use(cors(config))
 server.use(bodyParser.json())
-// server.use(auth)
 server.use(auth.initialise())
 server.use(router)
 

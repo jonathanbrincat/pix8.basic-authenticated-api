@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const auth = require('./auth')
+const auth = require('./auth') // token route
 const users = require('./users')
 const tasks = require('./tasks')
 

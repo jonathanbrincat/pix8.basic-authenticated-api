@@ -7,7 +7,7 @@ var instance;
 
 const params = {
   secretOrKey: config.secret,
-  jwtFromRequest: ExtractJwt.fromAuthHeader() //.fromAuthHeaderAsBearerToken()
+  jwtFromRequest: ExtractJwt.fromAuthHeader() //.fromAuthHeaderAsBearerToken('jwt') => v3 onwards
 }
 
 class Auth {
@@ -17,7 +17,7 @@ class Auth {
         .then(user => {
           if (user) {
             return done(null, {
-              id: user.id,
+              id: user.id, // JB: this is were request.user.id originates from in routes
               email: user.email,
             })
           }
@@ -30,17 +30,17 @@ class Auth {
     passport.use(strategy)
 
     instance = this
-
-    // return passport.initialize()
   }
 
-  authenticate() {
-    console.log('-- Authenticated route --')
-    return passport.authenticate('jwt', config.session)
+  authenticate(request, response, next) {
+    return passport.authenticate('jwt', config.session)  // JB: passport.authenticate is already a middleware handler and so no need for next()
   }
 
   initialise() {
-    return passport.initialize()
+    return passport.initialize() // JB: optional middleware that adds passport instance to incoming requests so that authentication strategy can proceed
+    // https://stackoverflow.com/questions/46644366/what-is-passport-initialize-nodejs-express
+    // https://stackoverflow.com/questions/56590177/unable-to-understand-requirement-of-passport-initialize-middleware
+    // Middlewares are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle; hence this is how the magic happens that attaches id and email to the request body
   }
 }
 
