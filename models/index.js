@@ -19,10 +19,6 @@ class Models extends Db {
       .filter(file => file.isFile() && path.extname(file.name.toLowerCase()) === '.js' && file.name.toLowerCase() !== 'index.js')
       .forEach(file => {
 
-        // TODO: replace import. deprecated post v5
-        // const model = Db.orm.import(
-        //   path.join(__dirname, file.name)
-        // )
         const model = require(
           path.join(__dirname, file.name)
         )(Db.orm, DataTypes)

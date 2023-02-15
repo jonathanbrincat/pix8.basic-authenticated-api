@@ -4,7 +4,6 @@ const { Users } = require('../models')
 
 router.route('/')
   .post((request, response) => {
-    console.log('POST users => ', request.body)
 
     Users.create(request.body)
       .then(data => response.status(200).json(data))

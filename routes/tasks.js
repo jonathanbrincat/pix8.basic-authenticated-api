@@ -13,7 +13,6 @@ const { Tasks } = require('../models')
 
 router
 // router.route('/')
-  // .all('/:id?(\\d+)',
   .all('/:id?',
     auth.authenticate(), // JB: can't do this. have to execute. thought it was a callback. need to check docs.
     (request, response, next) => {
@@ -32,7 +31,6 @@ router
   .post('/', (request, response) => {
 
     request.body.user_id = request.user.id
-    console.log('POST task => ', request.body.user_id)
 
     Tasks.create(request.body)
       .then(data => response.status(200).json({ tasks: data }))
@@ -40,7 +38,6 @@ router
   })
 
 // JB: alternative
-// router.route('/:id(\\d+)')
 // router
   // .all('/:id',
   //   // auth.authenticate,

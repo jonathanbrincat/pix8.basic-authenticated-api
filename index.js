@@ -23,4 +23,4 @@ Db.orm.sync({ force: true })
     )
   })
 
-console.log(Db.orm.models) // globally accesible helper to attached models. can potentially be used in place of my singleton https://sequelize.org/v5/class/lib/sequelize.js~sequelize
+// console.log(Db.orm.models) // globally accesible helper to attached models. can potentially be used in place of my singleton https://sequelize.org/v5/class/lib/sequelize.js~sequelize
