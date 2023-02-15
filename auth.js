@@ -11,17 +11,18 @@ var instance;
 const strategyConfig = {
   secretOrKey: config.secret,
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken('jwt'),
-  // jwtFromRequest: ExtractJwt.fromAuthHeader(),
   // issuer: 'localhost',
   // audience: 'localhost',
 }
 
-// const sessionConfig = {
-//   secret: config.secret,
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { secure: true }
-// }
+/*
+const sessionConfig = {
+  secret: config.secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}
+*/
 
 class Auth {
   constructor() {
