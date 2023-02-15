@@ -21,7 +21,7 @@ module.exports = (sequelize, DataType) => {
       }
     },
     {
-      underscored: true, // JB: should work but has no effect
+      // underscored: true, // JB: should work but has no effect
     }
   )
 
