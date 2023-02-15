@@ -5,7 +5,7 @@ module.exports = {
     password: '',
     params: {
       dialect: 'sqlite',
-      storage: 'db.sqlite',
+      storage: 'db.sqlite', // 'path/to/database.sqlite'
       define: {
         underscored: true,
       },

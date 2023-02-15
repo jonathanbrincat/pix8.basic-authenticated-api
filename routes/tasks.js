@@ -22,6 +22,7 @@ router
     }
   )
   .get('/', (request, response) => {
+    // JB: ISSUE: the user_id foreign key is not being populated at the point of creating of an entry; this is why these all fail. no foreigh key
 
     Tasks.findAll({ where: { user_id: request.user.id } })
     // Tasks.findAll({ })
@@ -31,6 +32,7 @@ router
   .post('/', (request, response) => {
 
     request.body.user_id = request.user.id
+    console.log('POST task => ', request.body.user_id)
 
     Tasks.create(request.body)
       .then(data => response.status(200).json({ tasks: data }))

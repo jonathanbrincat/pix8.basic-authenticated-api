@@ -1,10 +1,12 @@
 const router = require('express').Router()
 const auth = require('../auth')
 const { Users } = require('../models')
-const models = require('../models')
+// const models = require('../models')
 
 router.route('/')
   .post((request, response) => {
+    console.log('POST users => ', request.body)
+
     Users.create(request.body)
       .then(data => response.status(200).json(data))
       .catch(error => response.status(412).json({ msg: error.message }))
@@ -12,7 +14,7 @@ router.route('/')
   .all(auth.authenticate())
   .get((request, response) => {
 
-    Users.findById(request.user.id, {
+    Users.findByPk(request.user.id, {
       attributes: ['id', 'name', 'email']
     })
       .then(data => response.status(200).json(data))

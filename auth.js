@@ -31,7 +31,7 @@ class Auth {
     **/
     passport.use(
       new JwtStrategy(strategyConfig, (payload, done) => {
-        Users.findById(payload.id)
+        Users.findByPk(payload.id)
           .then(user => {
             // success: user found
             if (user) {

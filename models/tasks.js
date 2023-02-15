@@ -54,6 +54,9 @@ module.exports = (sequelize, DataType) => {
         allowNull: false,
         defaultValue: false
       }
+    },
+    {
+      underscored: true, // JB: should work but has no effect
     }
   )
 

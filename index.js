@@ -22,3 +22,5 @@ Db.orm.sync({ force: true })
       server.get('port'), () => console.log(`\nAPI running on http://localhost:${server.get('port')}`)
     )
   })
+
+console.log(Db.orm.models) // globally accesible helper to attached models. can potentially be used in place of my singleton https://sequelize.org/v5/class/lib/sequelize.js~sequelize
